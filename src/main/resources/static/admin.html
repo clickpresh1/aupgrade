@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aupgrade – Admin Dashboard (Private)</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        body {
+            font-family: system-ui, sans-serif;
+            background: #111;
+            color: #0f0;
+            padding: 2rem;
+        }
+
+        h1,
+        h2 {
+            color: #0f0;
+        }
+
+        input[type="password"] {
+            padding: 12px;
+            font-size: 1.1rem;
+            width: 300px;
+            background: #222;
+            color: #0f0;
+            border: 1px solid #0f0;
+        }
+
+        button {
+            padding: 12px 20px;
+            background: #0f0;
+            color: #000;
+            border: none;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: #000;
+        }
+
+        th,
+        td {
+            border: 1px solid #0f0;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background: #003300;
+        }
+
+        tr:hover {
+            background: #002200;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Aupgrade – Secret Admin Panel</h1>
+    <div id="root"></div>
+    <script type="text/babel" data-presets="env,react" src="/admin.js"></script>
+</body>
+
+</html>

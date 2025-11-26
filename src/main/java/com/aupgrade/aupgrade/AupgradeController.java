@@ -34,6 +34,11 @@ public class AupgradeController {
         profile.setPerc(req.perc());
         User savedProfile = repo.save(profile);
         return savedProfile;
+    } 
+
+    @GetMapping("/users")
+    public List<User> getAllUsers() {
+        return repo.findAll();
     }
 
     @GetMapping("/recommendation")
