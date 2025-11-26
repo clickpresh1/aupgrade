@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+// import org.springframework.http.ResponseEntity;∏
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,14 +26,14 @@ public class AupgradeController {
     private UserRepository repo;
 
     @PostMapping("/submit")
-    public ResponseEntity<String> submit(@RequestBody SubmitRequest req) {
+    public User submit(@RequestBody SubmitRequest req) {
         User profile = new User();
         profile.setName(req.name());
         profile.setSector(req.sector());
         profile.setIncomeRange(req.incomeRange());
         profile.setPerc(req.perc());
-        repo.save(profile);
-        return ResponseEntity.ok("Saved!");
+        User savedProfile = repo.save(profile);
+        return savedProfile;
     }
 
     @GetMapping("/recommendation")

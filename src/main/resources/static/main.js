@@ -27,7 +27,7 @@ function App() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (error || !name || !sector || !percentage) {
+        if (error || !name || !sector || !incomeRange || !percentage) {
             alert("Please fix errors and fill all fields");
             return;
         }
@@ -40,14 +40,17 @@ function App() {
                     name: name.trim(),
                     sector: sector.trim(),
                     incomeRange: incomeRange.trim(),
-                    percentage: parseInt(percentage)
+                    perc: parseInt(percentage) 
                 })
             });
 
             if (response.ok) {
-                alert("Saved! Taking you to your recommendation...");
+                const userData = await response.json();
+
+                alert("Saved! Taking you to your profile page...");
+
                 window.location.href =
-                    `/recommendation.html?name=${encodeURIComponent(name)}&sector=${encodeURIComponent(sector)}&incomeRange=${encodeURIComponent(incomeRange)}&pct=${percentage}`;
+                    `/profile.html?name=${encodeURIComponent(userData.name)}&sector=${encodeURIComponent(userData.sector)}&incomeRange=${encodeURIComponent(userData.incomeRange)}&perc=${encodeURIComponent(userData.perc)}`;
             } else {
                 alert("Failed to save. Try again.");
             }
@@ -103,7 +106,7 @@ function App() {
                         2. Your sector
                     </label>
 
-                    <div><select id="myDropdown" name="selectedOption" value={sector} onChange={(e) => setSector(e.target.value)} required>
+                    <div><select id="sectorDropdown" name="selectedSector" value={sector} onChange={(e) => setSector(e.target.value)} required>
                         <option value="">-- Please choose an option --</option>
                         <option value="Agriculture">Agriculture</option>
                         <option value="Arts">Arts</option>
@@ -121,9 +124,25 @@ function App() {
 
                 </div>
 
+                <div style={{ marginBottom: '20px' }}>
+                    <label style={{ display: 'block', marginBottom: '8px', fontWeight: 'bold', color: '#555' }}>
+                        3. Your monthly income range (NGN)
+                    </label>
+
+                    <div><select id="incomeDropdown" name="selectedIncomeRange" value={incomeRange} onChange={(e) => setIncomeRange(e.target.value)} required>
+                        <option value="">-- Please choose an option --</option>
+                        <option value="<100k"> below 100k </option>
+                        <option value="100k-300k">100k - 300k</option>
+                        <option value="300k-500k">300k - 500k</option>
+                        <option value="500k-1M">500k - 1M</option>
+                        <option value=">1M"> over 1M</option>
+                    </select></div>
+                </div>
+
+
                 <div style={{ marginBottom: '30px' }}>
                     <label style={{ display: 'block', marginBottom: '8px', fontWeight: 'bold', color: '#555' }}>
-                        3. Max % of monthly salary to invest
+                        4. Max % of monthly salary to invest
                     </label>
                     <input
                         type="number"
